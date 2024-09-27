@@ -1,0 +1,4 @@
+{
+	"dotnetAcquisitionExtension.enableTelemetry": false,
+	"omnisharp.useModernNet": false
+}

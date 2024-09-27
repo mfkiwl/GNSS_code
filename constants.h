@@ -1,6 +1,3 @@
-#ifndef CONSTANTS_H
-#define CONSTANTS_H
-
 /*-----
 * 定数・構造体の定義
 *-----*/

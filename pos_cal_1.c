@@ -51,19 +51,20 @@ static void inverse_matrix(double a[MAX_M][MAX_M], int m)
 				}
 			}
 		}
+	}
 
 		/*元の行列を逆行列で上書きする*/
-		for (i=0; i < m; i++) {
-			for (j=0; j < m; j++) {
-				a[i][j] = b[i][j+m];
-			}
+	for (i=0; i < m; i++) {
+		for (j=0; j < m; j++) {
+			a[i][j] = b[i][j+m];
 		}
 	}
 }
 
+
 /*
-* computer_solution() - 最小二乗法で解を求める
-* void computer_solution(G, dr, wgt, dx, cov, n, m):
+* compute_solution() - 最小二乗法で解を求める
+* void compute_solution(G, dr, wgt, dx, cov, n, m):
 * 	double G[][];デザイン行列
 * 	double dr[];方程式の右辺(n次元)
 * 	double wgt[];重み(n次元/NULLなら重みはない)
@@ -75,7 +76,7 @@ static void inverse_matrix(double a[MAX_M][MAX_M], int m)
 * 与えられた方程式を最小二乗法で解く。重みが不要な場合、はwgtにNULLを指定する。
 */
 
-void computer_solution(double G[MAX_N][MAX_M], double dr[MAX_N], double wgt[MAX_N], double dx[MAX_M], double cov[MAX_M][MAX_M], int n, int m)
+void compute_solution(double G[MAX_N][MAX_M], double dr[MAX_N], double wgt[MAX_N], double dx[MAX_M], double cov[MAX_M][MAX_M], int n, int m)
 {
 	int i,j,k;
 	double w,a[MAX_M][MAX_M];
@@ -144,10 +145,10 @@ void main(int argc, char **argv)
 	/* 解を初期化 */
 	for (i=0; i<MAX_M; i++) {
 		sol[i] = 0.0;
-	}
+	};
 
 	/* 解を求めるループ*/
-	for(loop=0, loop<LOOP; loop++) {
+	for (loop=0; loop<LOOP; loop++) {
 		n = SATS;
 		for(i=0; i<n; i++) {
 			satpos = positon[i];
@@ -165,7 +166,7 @@ void main(int argc, char **argv)
 		}
 
 		/* 最小二乗法で解を求める */
-		computer_solution(G, dr, NULL, dx, cov, n, 3);
+		compute_solution(G, dr, NULL, dx, cov, n, 3);
 
 		/* 初期値を加える */
 		for (i=0; i<3; i++) {
